@@ -65,9 +65,9 @@ Comandos para las ejecuciones:
     
 **3. logscript.py**
 
-    Script de generación del archivo totals.txt, en la ruta de resultados correspondiente al dataset con el que estemos ejecutando, en el que se recogen tiempos totales y otros datos de interés sobre las ejecuciones. Ejemplo de ruta de archivo generado:
+   Script de generación del archivo totals.txt, en la ruta de resultados correspondiente al dataset con el que estemos ejecutando, en el que se recogen tiempos totales y otros datos de interés sobre las ejecuciones. Ejemplo de ruta de archivo generado:
     
-      */home/janira/results/public_data/words/dic_15.txt/totals.txt*
+   */home/janira/results/public_data/words/dic_15.txt/totals.txt*
     
 **4. config_scripts.py, repartition_scripts.py, persist_scripts.py, skew_scripts.py**
 
@@ -81,7 +81,7 @@ Comandos para las ejecuciones:
     
   que generará un archivo de texto *mediumTotalTimes.txt* con la media de las repeticiones de los datos de ejecución alamacenados en totals.txt. Ejemplo de ruta de archivo generado:
     
-      */home/janira/results/public_data/words/dic_15.txt/mediumTotalTimes.txt*
+   */home/janira/results/public_data/words/dic_15.txt/mediumTotalTimes.txt*
     
   Este script depende de la información almacenada en el archivo */home/janira/results/pwd.txt* (que se genera en run_job.py), en el que se especifica la ruta en la que se encuentra el archivo totals.txt.
   Este paso está pensado para que se ejecute al terminar la ejecución de run_app.py, pero si se quiere aplicar total.py sobre otro archivo totals.txt que no sea el último que se ha generado, basta con editar el archivo */home/janira/results/pwd.txt* para indicar la ruta deseada.
