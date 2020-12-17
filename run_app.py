@@ -56,6 +56,10 @@ for data_f in data_paths[dataset]:
                     print("Executor Cores: "+str(y))
                     os.system('python3 wordCountConfig.py '+str(app)+' '+str(r)+' '+str(s)+' '+str(x)+' '+str(t)+' '+str(y)+' '+n+' + '+str(mode)+' '+str(log_dir)+' '+str(rep)+' '+str(data_f))
     else:
+for app in apps[internal_param[1]]:
+  if app in ('word_count_repartition_n', 'word_count_sort_repartition_n', 'word_count_plus_repartition_n'):
+    num = ['4']
+    for n in num:
       for r in driver_cores:
         for s in driver_mem:
           for t in executor_mem:    
@@ -69,5 +73,3 @@ for data_f in data_paths[dataset]:
                   print("Executor Memory: "+str(t))
                   print("Executor Cores: "+str(y))
                   os.system('python3 wordCountConfig.py '+str(app)+' '+str(r)+' '+str(s)+' '+str(x)+' '+str(t)+' '+str(y)+' + '+str(mode)+' '+str(log_dir)+' '+str(rep)+' '+str(data_f))
-                  
-

@@ -18,6 +18,9 @@ def main(mode, log_dir, rep, internal_param, data_f):
 
     dateTime = datetime.now()
     
+    if not os.path.exists("/home/janira/logs"):
+      os.makedirs("/home/janira/logs")
+    
     if not os.path.exists("/home/janira/results"+str(data_f)):
       os.makedirs("/home/janira/results"+str(data_f))
       
