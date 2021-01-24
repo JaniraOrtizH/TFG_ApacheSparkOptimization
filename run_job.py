@@ -11,15 +11,12 @@ import config_scripts
 from config_scripts import *
 from repartition_scripts import *
 from persist_scripts import *
-from skew_scripts import *
+from sesgo_scripts import *
 
 
 def main(mode, log_dir, rep, internal_param, data_f):
 
     dateTime = datetime.now()
-    
-    if not os.path.exists("/home/janira/logs"):
-      os.makedirs("/home/janira/logs")
     
     if not os.path.exists("/home/janira/results"+str(data_f)):
       os.makedirs("/home/janira/results"+str(data_f))
@@ -30,9 +27,6 @@ def main(mode, log_dir, rep, internal_param, data_f):
     elif mode == 'run':
       resultsFile = open("/home/janira/results"+str(data_f)+"/result-"+str(internal_param[1:])+".txt","a")
       totalsFile = open("/home/janira/results"+str(data_f)+"/totals.txt","a")
-      os.system('rm /home/janira/results/pwd.txt')
-      pwdFile = open("/home/janira/results/pwd.txt","w")
-      pwdFile.write("/home/janira/results"+str(data_f)+'/')
       print('exec',internal_param,'@', data_f, '+', rep, log_dir)
       resultsFile.write("---------------------------------------------------------------------------------------------\n")
       resultsFile.write("---------------------------------------------------------------------------------------------\n")

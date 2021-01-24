@@ -24,6 +24,8 @@ def write_results(data_f, internal_param, resultsFile, totalsFile, file):
     ShuffleWriteMetrics = []
     ShuffleBytesWrittenMetrics = []
     
+    internal_param = internal_param.strip('][').split(',')[1:]
+    
     for event in log:
         x = json.loads(event)
         if x["Event"] == "SparkListenerApplicationStart":
@@ -97,32 +99,32 @@ def write_results(data_f, internal_param, resultsFile, totalsFile, file):
         resultsFile.write("      Min task time: " + str(min(tasks))+ ", task ID: "+ str(tasks.index(min(tasks))+k)+"\n")
         mediumTime = sum(tasks)/int(stagesInfo[i][1])
         resultsFile.write("      Medium time of tasks: "+ str(mediumTime))
-        totalsFile.write(str(data_f)+str(internal_param[1:])+"MediumTaskTime-Stage"+str(stagesInfo[i][0])+";"+str(mediumTime)+"\n")
+        totalsFile.write(str(data_f)+str(internal_param[0:])+"MediumTaskTime-Stage"+str(stagesInfo[i][0])+";"+str(mediumTime)+"\n")
         
         JVCGCTimeMetricsStage = JVCGCTimeMetrics[k:int(stagesInfo[i][1])+k]
         mediumJVCGCTimeMetrics = sum(JVCGCTimeMetricsStage)/int(stagesInfo[i][1])
         resultsFile.write("      Medium JVCGCTimeMetrics of tasks: "+ str(mediumJVCGCTimeMetrics))
-        totalsFile.write(str(data_f)+str(internal_param[1:])+"MediumTaskJVCGCTimeMetrics-Stage"+str(stagesInfo[i][0])+";"+str(mediumJVCGCTimeMetrics)+"\n")
+        totalsFile.write(str(data_f)+str(internal_param[0:])+"MediumTaskJVCGCTimeMetrics-Stage"+str(stagesInfo[i][0])+";"+str(mediumJVCGCTimeMetrics)+"\n")
         
         ShuffleRecordsMetricsStage = ShuffleRecordsMetrics[k:int(stagesInfo[i][1])+k]
         mediumShuffleRecordsMetrics = sum(ShuffleRecordsMetricsStage)/int(stagesInfo[i][1])
         resultsFile.write("      Medium ShuffleRecordsMetrics of tasks: "+ str(mediumShuffleRecordsMetrics))
-        totalsFile.write(str(data_f)+str(internal_param[1:])+"MediumTaskShuffleRecordsMetrics-Stage"+str(stagesInfo[i][0])+";"+str(mediumShuffleRecordsMetrics)+"\n")
+        totalsFile.write(str(data_f)+str(internal_param[0:])+"MediumTaskShuffleRecordsMetrics-Stage"+str(stagesInfo[i][0])+";"+str(mediumShuffleRecordsMetrics)+"\n")
         
         ShuffleWriteMetricsStage = ShuffleWriteMetrics[k:int(stagesInfo[i][1])+k]
         mediumShuffleWriteMetrics = sum(ShuffleWriteMetricsStage)/int(stagesInfo[i][1])
         resultsFile.write("      Medium ShuffleWriteMetrics of tasks: "+ str(mediumShuffleWriteMetrics))
-        totalsFile.write(str(data_f)+str(internal_param[1:])+"MediumTaskShuffleWriteMetrics-Stage"+str(stagesInfo[i][0])+";"+str(mediumShuffleWriteMetrics)+"\n")
+        totalsFile.write(str(data_f)+str(internal_param[0:])+"MediumTaskShuffleWriteMetrics-Stage"+str(stagesInfo[i][0])+";"+str(mediumShuffleWriteMetrics)+"\n")
         
         ShuffleBytesWrittenMetricsStage = ShuffleBytesWrittenMetrics[k:int(stagesInfo[i][1])+k]
         mediumShuffleBytesWritten = sum(ShuffleBytesWrittenMetricsStage)/int(stagesInfo[i][1])
         resultsFile.write("      Medium ShuffleBytesWritten of tasks: "+ str(mediumShuffleBytesWritten))
-        totalsFile.write(str(data_f)+str(internal_param[1:])+"MediumTaskShuffleBytesWritten-Stage"+str(stagesInfo[i][0])+";"+str(mediumShuffleBytesWritten)+"\n")
+        totalsFile.write(str(data_f)+str(internal_param[0:])+"MediumTaskShuffleBytesWritten-Stage"+str(stagesInfo[i][0])+";"+str(mediumShuffleBytesWritten)+"\n")
     
     resultsFile.write("\nApp Total Time " + str((appEnd - appStart).total_seconds()) + " in seconds, " + str((appEnd - appStart).total_seconds()/60))
     resultsFile.write("\n\n\n\n\n")
     resultsFile.write("---------------------------------------------------------------------------------------------\n")
-    totalsFile.write(str(data_f)+str(internal_param[1:])+"APPTotalTime;"+str((appEnd - appStart).total_seconds())+"\n")
+    totalsFile.write(str(data_f)+str(internal_param[0:])+"APPTotalTime;"+str((appEnd - appStart).total_seconds())+"\n")
 
 if __name__ == '__main__':
     
@@ -138,6 +140,9 @@ if __name__ == '__main__':
     log_dir = argList[1]
     data_f = argList[2]
     internal_param = argList[3]
+    
+    print('--------------------')
+    print(str(internal_param))
 
     file = open(log_dir+"/"+internal_param.strip('][').split(',')[1]+"_"+app_id)
     resultsFile = open("/home/janira/results"+str(data_f)+"/result-"+str(internal_param.strip('][').split(',')[1:])+".txt","a")
