@@ -12,7 +12,7 @@ def mymapeo(x):
 def word_count_join_vocals(internal_param, data_file):
     try:
       conf = SparkConf().setMaster("spark://dana:7077").setAppName(internal_param[1]).setAll([('spark.driver.cores', internal_param[2]), ('spark.driver.memory', internal_param[3]), ('spark.executor.instances', internal_param[4]), ('spark.executor.memory', internal_param[5]), ('spark.executor.cores', internal_param[6])])
-      sc = SparkContext(conf=conf, pyFiles=['run_app_small.py', 'run_app.py', 'sesgo_scripts.py', 'persist_scripts.py', 'repartition_scripts.py', 'config_scripts.py', 'wordCountConfig.py'])
+      sc = SparkContext(conf=conf, pyFiles=['run_job.py', 'run_app.py'])
 
       data = sc.textFile(data_file)
       words = data.flatMap(mymapeo)
@@ -39,7 +39,7 @@ def word_count_join_vocals(internal_param, data_file):
 def word_count_join_vocals_broadcast(internal_param, data_file):
     try:
       conf = SparkConf().setMaster("spark://dana:7077").setAppName(internal_param[1]).setAll([('spark.driver.cores', internal_param[2]), ('spark.driver.memory', internal_param[3]), ('spark.executor.instances', internal_param[4]), ('spark.executor.memory', internal_param[5]), ('spark.executor.cores', internal_param[6])])
-      sc = SparkContext(conf=conf, pyFiles=['run_app_small.py', 'run_app.py', 'sesgo_scripts.py', 'persist_scripts.py', 'repartition_scripts.py', 'config_scripts.py', 'wordCountConfig.py'])
+      sc = SparkContext(conf=conf, pyFiles=['run_job.py', 'run_app.py'])
 
       data = sc.textFile(data_file)
       words = data.flatMap(mymapeo)
@@ -66,7 +66,7 @@ def word_count_join_vocals_broadcast(internal_param, data_file):
 def word_count_join_vocals_vs_constants(internal_param, data_file):
     try:
       conf = SparkConf().setMaster("spark://dana:7077").setAppName(internal_param[1]).setAll([('spark.driver.cores', internal_param[2]), ('spark.driver.memory', internal_param[3]), ('spark.executor.instances', internal_param[4]), ('spark.executor.memory', internal_param[5]), ('spark.executor.cores', internal_param[6])])
-      sc = SparkContext(conf=conf, pyFiles=['run_app_small.py', 'run_app.py', 'sesgo_scripts.py', 'persist_scripts.py', 'repartition_scripts.py', 'config_scripts.py', 'wordCountConfig.py'])
+      sc = SparkContext(conf=conf, pyFiles=['run_job.py', 'run_app.py'])
 
       def clasify(x):
       	if x[0][0] in ('a', 'e', 'i', 'o', 'u'):
@@ -100,7 +100,7 @@ def word_count_join_vocals_vs_constants(internal_param, data_file):
 def word_count_join_vocals_vs_constants2(internal_param, data_file):
     try:
       conf = SparkConf().setMaster("spark://dana:7077").setAppName(internal_param[1]).setAll([('spark.driver.cores', internal_param[2]), ('spark.driver.memory', internal_param[3]), ('spark.executor.instances', internal_param[4]), ('spark.executor.memory', internal_param[5]), ('spark.executor.cores', internal_param[6])])
-      sc = SparkContext(conf=conf, pyFiles=['run_app_small.py', 'run_app.py', 'sesgo_scripts.py', 'persist_scripts.py', 'repartition_scripts.py', 'config_scripts.py', 'wordCountConfig.py'])
+      sc = SparkContext(conf=conf, pyFiles=['run_job.py', 'run_app.py'])
 
       def clasify(x):
       	if x[0][0] in ('a', 'e', 'i', 'o', 'u'):
