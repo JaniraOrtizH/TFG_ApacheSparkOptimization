@@ -75,14 +75,10 @@ Comandos para las ejecuciones:
     
 **5. totals.py**
 
-  Tras la finalización de nuestras ejecuciones mediante el lanzamiento de run_app.py como se describe en el punto 1, se ejecutará el siguiente comando:
+  Tras la finalización de nuestras ejecuciones se ejecutará el siguiente comando (automáticamente dentro del script run_app.py):
     
         python3 totals.py
     
-  que generará un archivo de texto *mediumTotalTimes.txt* con la media de las repeticiones de los datos de ejecución alamacenados en totals.txt. Ejemplo de ruta de archivo generado:
+  que generará un archivo de texto *mediumTotalTimes.txt* con la media de tiempos de las repeticiones de los datos de ejecución alamacenados en totals.txt. Ejemplo de ruta de archivo generado:
     
    */home/janira/results/public_data/words/dic_15.txt/mediumTotalTimes.txt*
-    
-  Este script depende de la información almacenada en el archivo */home/janira/results/pwd.txt* (que se genera en run_job.py), en el que se especifica la ruta en la que se encuentra el archivo totals.txt.
-  Este paso está pensado para que se ejecute al terminar la ejecución de run_app.py, pero si se quiere aplicar total.py sobre otro archivo totals.txt que no sea el último que se ha generado, basta con editar el archivo */home/janira/results/pwd.txt* para indicar la ruta deseada.
-    
